@@ -9,7 +9,7 @@ module.exports = {
     title: "New Year, New Bora!",
     author: "Au-venturous Buddy"
   },
-  pathPrefix: "/ZNZN-V4-MBSA-V2-I1",
+  pathPrefix: "/ZNZN-V2-MBWP-V2-I1",
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
