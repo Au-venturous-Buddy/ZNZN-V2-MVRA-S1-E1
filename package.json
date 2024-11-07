@@ -3,7 +3,7 @@
   "author": "Au-venturous Buddy <auventurous.buddy@gmail.com>",
   "main": "main.js",
   "build": {
-    "icon": "src/images/Au-Some Blogs.png",
+    "icon": "src/images/Zene N Zeanne V4 Logo Small.png",
     "productName": "New Year, New Bora!",
     "files": [
       "public/**/*",
