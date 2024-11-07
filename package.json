@@ -1,10 +1,10 @@
 {
-  "name": "znzn-v4-mbsa-v1-i2",
+  "name": "znzn-v2-mbwp-v2-i1",
   "author": "Au-venturous Buddy <auventurous.buddy@gmail.com>",
   "main": "main.js",
   "build": {
     "icon": "src/images/Au-Some Blogs.png",
-    "productName": "Zene 'N Zeanne Au-Some Blogs: The \"Au-Some\" Ice Breaker",
+    "productName": "New Year, New Bora!",
     "files": [
       "public/**/*",
       "main.js"
@@ -46,8 +46,8 @@
     }
   },
   "private": true,
-  "description": "Zeanne and Nikki help Zene and Jake prepare for an Ice Breaker for their Araling Panlipunan (History) class.",
-  "version": "4.1.2.0",
+  "description": "Zeanne helps out in a beach clean-up while her twin brother Zene scuba-dived to help replant corals.",
+  "version": "2.2.1.0",
   "license": "0BSD",
   "scripts": {
     "build": "gatsby build",

@@ -312,28 +312,6 @@ ul.bullet-points li {
   justify-content: center;
 }
 
-.ausome-blogs,
-.ausome-blogs-v2 {
-  font-family: "Chalkduster", "Futura", "Segoe UI", Arial, Helvetica, sans-serif;
-  color: #00f;
-  background-color: rgb(255, 234, 183);
-  background-image: url("../images/Au-Some\ Blogs\ Background.png");
-  background-size: 90%;
-  background-position: center;
-  border-left: 20px dotted gray;
-  margin: 5%;
-  box-shadow: $shadowCenter;
-
-  .ext-web-link,
-  .ext-web-link:visited {
-    color: #00f;
-  }
-
-  .ext-web-link:hover {
-    color: #fff;
-  }
-}
-
 .modal-header,
 .modal-body,
 .modal-footer {

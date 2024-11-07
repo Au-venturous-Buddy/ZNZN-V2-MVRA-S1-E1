@@ -7,7 +7,6 @@ import CloseButton from "../components/close-button";
 import ResponsiveSize from "../hooks/responsive-size";
 import ResponsiveHeader from "../components/responsive-header";
 import { textVide } from 'text-vide';
-import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import RangeSlider from 'react-bootstrap-range-slider';
 
 function SettingsWindow(props) {
@@ -71,7 +70,7 @@ function SettingsWindow(props) {
   )
 }
 
-export default class WordpressBlogv2022_3 extends React.Component {
+export default class WordpressBlogv2022_2 extends React.Component {
   state = {
     currentLanguage: 'English',
     currentMode: 'Original',
@@ -97,7 +96,6 @@ export default class WordpressBlogv2022_3 extends React.Component {
   }
   
   changeBionicReadingFixation = (bionicReadingFixationRaw) => {
-    /*
     switch(parseInt(bionicReadingFixationRaw)) {
       case 1:
         this.setState({currentBionicReadingFixation: 5});
@@ -111,45 +109,33 @@ export default class WordpressBlogv2022_3 extends React.Component {
       default:
         this.setState({currentBionicReadingFixation: 0});
     }
-    */
-    this.setState({currentBionicReadingFixation: parseInt(bionicReadingFixationRaw)})
+
     this.setState({currentBionicReadingFixationIndex: parseInt(bionicReadingFixationRaw)});
   }
 
   render() {
     var metadataItems = null;
-    var images = {};
-    var texts = {};
-    var imagesAlt = {};
+    var images = [];
+    var texts = [];
+    var imagesAlt = [];
     var currentLanguageCode = `en`;
     var languages = new Set();
     for(var i = 0; i < this.props.data.allFile.edges.length; i++) {
       var nodeItem = this.props.data.allFile.edges[i].node
-      var parentFolder = nodeItem.relativeDirectory.split("/")[nodeItem.relativeDirectory.split("/").length - 1]
+
       if(nodeItem.relativeDirectory.includes("images") && nodeItem.ext === ".png") {
-        if(!(parentFolder in images)) {
-          images[parentFolder] = [];
-        }
-        images[parentFolder].push(nodeItem);
+        images.push(nodeItem);
       }
-      else if(nodeItem.relativeDirectory.includes("text") && nodeItem.ext === ".md" && nodeItem.name === "lang-info") {
-        languages.add(parentFolder)
-        if(nodeItem.relativeDirectory.includes("text/" + this.state.currentLanguage)) {
-          currentLanguageCode = nodeItem.childMarkdownRemark.frontmatter.language_code
-        }
-      }
-      else if(nodeItem.relativeDirectory.includes("text") && nodeItem.ext === ".md" && nodeItem.name === "image-alt" && nodeItem.relativeDirectory.includes("text/" + this.state.currentLanguage)) {
-        if(!(parentFolder in imagesAlt)) {
-          imagesAlt[parentFolder] = [];
-        }
-        imagesAlt[parentFolder] = nodeItem.childMarkdownRemark.frontmatter.image_alt
-      }
-      else if(nodeItem.relativeDirectory.includes("text") && nodeItem.ext === ".md") {
+      if(nodeItem.relativeDirectory.includes("text") && nodeItem.ext === ".md") {
+        languages.add(nodeItem.relativeDirectory.split("/")[nodeItem.relativeDirectory.split("/").length - 1])
         if(nodeItem.relativeDirectory.includes("text/" + this.state.currentLanguage.split("-")[0])) {
-          if(!(parentFolder in texts)) {
-            texts[parentFolder] = [];
+          if(nodeItem.name === "image-alt") {
+            imagesAlt = nodeItem.childMarkdownRemark.frontmatter.image_alt
+            currentLanguageCode = nodeItem.childMarkdownRemark.frontmatter.language_code
           }
-          texts[parentFolder].push(nodeItem);
+          else {
+            texts.push(nodeItem);
+          }
         }
       }
       else if(nodeItem.ext === ".md" && nodeItem.name === "index") {
@@ -164,67 +150,63 @@ export default class WordpressBlogv2022_3 extends React.Component {
 
     var modeOptions = []
     var callAt = []
-    metadataItems.childMarkdownRemark.frontmatter.modes_v2.forEach((mode) => {
+    metadataItems.childMarkdownRemark.frontmatter.modes.forEach((mode) => {
       modeOptions.push(<option key={mode.mode_name}>{mode.mode_name}</option>)
       if(mode.mode_name === this.state.currentMode) {
-        callAt = mode.scenes;
+        callAt = mode.call_at;
       }
     })
 
     var sections = [];
-    callAt.forEach((sceneID) => {
-      var subImages = images[sceneID]
-      var subTexts = texts[sceneID.split("-")[0]]
-      var subImagesAlt = imagesAlt[sceneID.split("-")[0]]
-
-      var sectionNum = 0;
-      var maxSectionNum = Math.max(parseInt(subImages[subImages.length - 1].name), parseInt(subTexts[subTexts.length - 1].name));
-      var currentImage = (<section aria-hidden={true}></section>);
-      var currentText = null;
-      var nextTextID = 0;
-      var nextImageID = 0;
-
-      while(sectionNum <= maxSectionNum) {
-        if(nextTextID < subTexts.length && parseInt(subTexts[nextTextID].name) === sectionNum) {
-          var currentTextHTML = subTexts[nextTextID].childMarkdownRemark.html;
-          if(this.state.currentBionicReadingFixation > 0) {
-            //if(metadataItems.childMarkdownRemark.frontmatter.version === 4) {
-              currentTextHTML = textVide(currentTextHTML, { sep: ['<span class="fixation-reading">', '</span>'], fixationPoint: this.state.currentBionicReadingFixation });
-            //}
-            /*
-            else {
-              const anchorStartTagRegex = /<a.*">/gi
-              const anchorEndTagRegex = /<\/a>/gi
-              console.log(currentTextHTML)
-              currentTextHTML = currentTextHTML.replace(anchorStartTagRegex, "")
-              currentTextHTML = currentTextHTML.replace(anchorEndTagRegex, "")
-              currentTextHTML = textVide(currentTextHTML, { sep: ['<span class="fixation-reading">', '</span>'], fixationPoint: (![2, 3].includes(this.state.currentBionicReadingFixation)) ? this.state.currentBionicReadingFixation : 1 });
-            }
-            */
+    var sectionNum = 0;
+    var maxSectionNum = Math.max(parseInt(images[images.length - 1].name), parseInt(texts[texts.length - 1].name));
+    var currentImage = (<section aria-hidden={true}></section>);
+    var currentText = null;
+    var nextTextID = 0;
+    var nextImageID = 0;
+    var callAtIndex = 0;
+    while(sectionNum <= maxSectionNum && callAtIndex < callAt.length) {
+      if(nextTextID < texts.length && parseInt(texts[nextTextID].name) === sectionNum) {
+        var currentTextHTML = texts[nextTextID].childMarkdownRemark.html;
+        if(this.state.currentBionicReadingFixation > 0) {
+          if(metadataItems.childMarkdownRemark.frontmatter.version === 4) {
+            currentTextHTML = textVide(currentTextHTML, { fixationPoint: this.state.currentBionicReadingFixation });
           }
-          currentText = (<section className="my-2" dangerouslySetInnerHTML={{ __html: currentTextHTML }}></section>);
-          nextTextID++;
+          else {
+            const anchorStartTagRegex = /<a.*">/gi
+            const anchorEndTagRegex = /<\/a>/gi
+            console.log(currentTextHTML)
+            currentTextHTML = currentTextHTML.replace(anchorStartTagRegex, "")
+            currentTextHTML = currentTextHTML.replace(anchorEndTagRegex, "")
+            currentTextHTML = textVide(currentTextHTML, { sep: ['<span style="color: #A35BFF">', '</span>'], fixationPoint: (![2, 3].includes(this.state.currentBionicReadingFixation)) ? this.state.currentBionicReadingFixation : 1 });
+          }
         }
-  
-        if(nextImageID < subImages.length && parseInt(subImages[nextImageID].name) === sectionNum) {
-          currentImage = (
-            <section className="my-2 center-image">
-              <GatsbyImage style={{maxWidth: "60%"}} alt={subImagesAlt[sectionNum]} image={getImage(subImages[nextImageID])} />
-            </section>
-          );
-          nextImageID++;
-        }
-  
+        currentText = (<section className="my-2" dangerouslySetInnerHTML={{ __html: currentTextHTML }}></section>);
+        nextTextID++;
+      }
+
+      if(nextImageID < images.length && parseInt(images[nextImageID].name) === sectionNum) {
+        currentImage = (
+          <section className="my-2 center-image">
+            <img style={{maxWidth: "60%"}} alt={imagesAlt[sectionNum]} src={images[nextImageID].publicURL} />
+          </section>
+        );
+        nextImageID++;
+      }
+
+      if(sectionNum === callAt[callAtIndex]) {
         sections.push(currentImage)
         sections.push(currentText)
-        sectionNum++;
+        callAtIndex++;
       }
-    })
+
+      sectionNum++;
+    }
 
     return(
-      <Layout menuBarItems={[(<SettingsWindow state={this.state} languageOptions={languageOptions} modeOptions={modeOptions} changeLanguage={this.changeLanguage} changeMode={this.changeMode} changeTableBackground={this.changeTableBackground} changeBionicReadingFixation={this.changeBionicReadingFixation} />)]} showMenuBar={true}>
+      <Layout menuBarItems={[(<SettingsWindow state={this.state} version={metadataItems.childMarkdownRemark.frontmatter.version} languageOptions={languageOptions} modeOptions={modeOptions} changeLanguage={this.changeLanguage} changeMode={this.changeMode} changeTableBackground={this.changeTableBackground} changeBionicReadingFixation={this.changeBionicReadingFixation} />)]} showMenuBar={true}>
       <section className={"table-background-" + this.state.currentTableBackground.toLowerCase().replace(/ /g, "-")}>
-        <div className={`p-3 ${metadataItems.childMarkdownRemark.frontmatter.format}`}>
+        <div className={`p-3 wordpress-v2022_2`}>
         <div style={{textAlign: "center"}}>
           <ResponsiveHeader level={1} maxSize={2} minScreenSize={800}>
             {metadataItems.childMarkdownRemark.frontmatter.title}
@@ -258,16 +240,12 @@ query {
             title
             image_alt
             language_code
-            modes_v2 {
+            modes {
               mode_name
-              scenes
+              call_at
             }
-            format
             version
           }
-        }
-        childImageSharp {
-          gatsbyImageData
         }
       }
     }
