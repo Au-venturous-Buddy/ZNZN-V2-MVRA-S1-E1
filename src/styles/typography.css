@@ -4,6 +4,16 @@
 }
 
 @font-face {
-    font-family: "Chalkduster";
-    src: url("../fonts/Chalkduster.woff2");
+    font-family: "Felt Tip Roman Bold";
+    src: url("../fonts/FeltTipRomBold.woff2");
+}
+
+@font-face {
+    font-family: "Felt Tip Roman Heavy";
+    src: url("../fonts/FeltTipRomHeavy.woff2");
+}
+
+@font-face {
+    font-family: "Felt Tip Roman Regular";
+    src: url("../fonts/FeltTipRomRegular.woff2");
 }
