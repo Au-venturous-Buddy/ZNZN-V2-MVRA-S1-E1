@@ -11,8 +11,8 @@ import ResponsiveSize from "../hooks/responsive-size";
 import ResponsiveHeader from "../components/responsive-header";
 import { textVide } from 'text-vide';
 import RangeSlider from 'react-bootstrap-range-slider';
-import { BsFillCheckSquareFill } from "react-icons/bs";
-import { BsFillDashSquareFill } from "react-icons/bs";
+import { FaCheckSquare } from "react-icons/fa";
+import { FaRegSquare } from "react-icons/fa";
 
 const helpTooltip = (message, props) => (
   <Tooltip {...props}>
@@ -216,12 +216,6 @@ function SettingsWindow(props) {
           </section>
           <section className="mb-3">
             <div className='align-items-center pb-3' style={{textAlign: 'center', color: "#017BFF"}}>
-              <ResponsiveHeader level={2} maxSize={1.5} minScreenSize={500}>{`Page Size`}</ResponsiveHeader>
-            </div>
-            <RangeSlider className="hover-shadow mt-3" variant="dark" tooltipLabel={currentValue => `${currentValue}%`} tooltipPlacement='top' tooltip='on' onChange={changeEvent => props.changePageSize(changeEvent.target.value)} value={props.state.currentSize} />
-          </section>
-          <section className="mb-3">
-            <div className='align-items-center pb-3' style={{textAlign: 'center', color: "#017BFF"}}>
               <ResponsiveHeader level={2} maxSize={1.5} minScreenSize={500}>{`Bionic Reading Level`}</ResponsiveHeader>
             </div>
             <RangeSlider className="hover-shadow mt-3" variant="dark" tooltipPlacement='top' tooltip='on' onChange={changeEvent => props.changeBionicReadingFixation(changeEvent.target.value)} min={0} max={5} value={props.state.currentBionicReadingFixationIndex} />
@@ -230,8 +224,8 @@ function SettingsWindow(props) {
             <Button onClick={props.changeOrientation}>
               {
                 props.state.currentOrientation ?
-                <BsFillCheckSquareFill /> :
-                <BsFillDashSquareFill />
+                <FaCheckSquare /> :
+                <FaRegSquare />
               } Easy Reading Mode
             </Button>
           </section>
@@ -249,7 +243,6 @@ export default class WordpressBlogv2022_2 extends React.Component {
     currentLanguage: 'English',
     currentMode: 'Original',
     currentTableBackground: "Zene",
-    currentSize: 65,
     currentBionicReadingFixationIndex: 0,
     currentBionicReadingFixation: 0,
     currentOrientation: false,
