@@ -1,16 +1,14 @@
 ---
-title: "New Year, New Bora!"
+title: "New Year (With a Bang!)"
 show_title_on_cover: false
-date: "2019-04-22"
+date: "2019-12-31"
+season: 1
+episode: 1
 version: 2
-volume: 2
-issue: 1
-category: "Wordpress Posts"
-synopsis: "Zeanne helps out in a beach clean-up while her twin brother Zene scuba-dived to help replant corals."
-url: ""
+category: "Read-Along"
+format: "wordpress-video-v2022_1"
+synopsis: "Zene, Zeanne, and their friends had an out-of-this-world New Year's Eve Party! But when the rocket failed to launch after the countdown, Zene and Zeanne remind Dani that failures are a good thing after all, as long as one does not give up."
 modes: [
-    {mode_name: "Original", call_at: [0, 1, 2, 3, 4, 7, 10, 13, 14]},
-    {mode_name: "Zene Only", call_at: [0, 1, 2, 3, 5, 8, 11, 13, 15]},
-    {mode_name: "Zeanne Only", call_at: [0, 1, 2, 3, 6, 9, 12, 13, 16]}
+    {mode_name: "Original", call_at: [0]}
 ]
 ---

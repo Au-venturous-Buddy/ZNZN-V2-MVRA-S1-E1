@@ -1,68 +1,44 @@
-.wordpress,
-.wordpress-v2022_2,
-.wordpress-v2022_3,
-.miscellaneous-page {
-  font-family: "Felt Tip Roman Bold", "Felt Tip Roman Regular", "Futura", "Segoe UI", Arial, Helvetica, sans-serif;
-  color: $primaryColor;
-  background-color: white;
-  background-image: url("../images/WhitePaperBackground.png");
-  background-size: 90%;
-  background-position: center;
-  border-left: 20px dotted gray;
-  margin: 5%;
-  box-shadow: $shadowCenter;
+.tv-background {
+  padding: 3%;
 
-  a,
-  a:visited,
-  a:hover {
-    color: $primaryColor;
-  }
-
-  a:hover {
-    background: rgba(255, 255, 0, 0.5);
-    box-shadow: none;
-    border-radius: 0px;
-    padding: 0px;
+  .all-titles-main-read-along,
+  .all-titles-main-buddies-next-door,
+  .media-preview-main-read-along,
+  .media-preview-main-buddies-next-door,
+  .tv-contents {
+    border: 20px solid rgb(188, 188, 188);
+    border-radius: 5px;
+    box-shadow: $shadowCenter;
+    background-image: url("../images/Zene\ N\ Zeanne\ Background.png");
+    background-size: cover;
+    color: white;
+    height: 5in;
+    overflow-y: scroll;
   }
 }
 
-.miscellaneous-page {
-  font-family: "Futura", "Segoe UI", Arial, Helvetica, sans-serif;
-  border-left: 7px dashed black;
+.tv-background,
+.tv-background-zene-n-zeanne-bedroom-v4 {
+  background: rgb(255, 246, 204);
 }
 
-.table-background,
-.table-background-zene {
-  border-top: 10px solid rgb(0, 123, 255);
-  border-bottom: 10px solid rgb(0, 123, 255);
-  background: rgb(2, 164, 254);
-  box-shadow: $shadowCenter;
+.tv-background-zene-n-zeanne-bedroom-v2 {
+  background: #fcc300;
 }
 
-.table-background-zeanne {
-  border-top: 10px solid #9542ff;
-  border-bottom: 10px solid #9542ff;
-  background: #a25aff;
-  box-shadow: $shadowCenter;
+.tv-background-zene-n-zeanne-classroom-v4 {
+  background: #269bdf;
+
+  .tv-contents {
+    border: 20px solid black;
+  }
 }
 
-.table-background-classroom-table {
-  border-top: 10px solid #feb956;
-  border-bottom: 10px solid #feb956;
-  background: #feb956;
-  box-shadow: $shadowCenter;
-}
+.tv-background-zene-n-zeanne-classroom-v2 {
+  background: #fee4c1;
+  border-bottom: 30px solid #2da4a8;
 
-.comic-strip-page p,
-.comic-strip-page-thumbnail .comic-strip-page-number {
-  color: #017BFF;
-}
-
-.comic-strip-page-thumbnail-current .comic-strip-page-number,
-.comic-strip-page-thumbnail:hover .comic-strip-page-number,
-.comic-strip-page-thumbnail:focus .comic-strip-page-number {
-  color: #017BFF;
-  background: rgba(0, 205, 0, 0.5);
-  border-left: 5px solid rgba(0, 139, 0, 0.7);
-  border-right: 5px solid rgba(0, 139, 0, 0.7);
+  .tv-contents {
+    border: 20px solid black;
+  }
 }

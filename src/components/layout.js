@@ -18,7 +18,7 @@ const HeaderMenuBar = function({show, menuBarItems}) {
   }
 }
 
-export default function Layout({ menuBarItems, children, showMenuBar }) {
+export default function Layout({ menuBarItems, children, showMenuBar, useCustomBackground }) {
   const data = useStaticQuery(
     graphql`
       query {
@@ -32,7 +32,7 @@ export default function Layout({ menuBarItems, children, showMenuBar }) {
     `
   )
   return (
-    <div>
+    <div className={useCustomBackground}>
       <Container fluid className="px-0 main">
         <Stack className="justify-content-center">
           <Header siteTitle={data.site.siteMetadata.title} />

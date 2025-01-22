@@ -88,8 +88,7 @@ article a:hover {
 body {
   font-family: "Futura", "Segoe UI", Arial, Helvetica, sans-serif;
   color: #fff;
-  background-image: url("../images/WoodFloorBackground.png");
-  background-size: 20%;
+  background: rgb(255, 246, 204);
 }
 
 main, .modal {
@@ -317,28 +316,6 @@ ul.bullet-points li {
 .modal-footer {
   text-align: center;
   color: $primaryColor;
-}
-
-.table-background,
-.table-background-zene {
-  border-top: 10px solid rgb(0, 123, 255);
-  border-bottom: 10px solid rgb(0, 123, 255);
-  background: rgb(2, 164, 254);
-  box-shadow: $shadowCenter;
-}
-
-.table-background-zeanne {
-  border-top: 10px solid #9542ff;
-  border-bottom: 10px solid #9542ff;
-  background: #a25aff;
-  box-shadow: $shadowCenter;
-}
-
-.table-background-classroom-table {
-  border-top: 10px solid #feb956;
-  border-bottom: 10px solid #feb956;
-  background: #feb956;
-  box-shadow: $shadowCenter;
 }
 
 .offcanvas-bottom {
