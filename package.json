@@ -1,10 +1,10 @@
 {
-  "name": "znzn-v2-mbwp-v2-i1",
+  "name": "znzn-v2-mvra-s1-e1",
   "author": "Au-venturous Buddy <auventurous.buddy@gmail.com>",
   "main": "main.js",
   "build": {
     "icon": "src/images/Zene N Zeanne V4 Logo Small.png",
-    "productName": "New Year, New Bora!",
+    "productName": "New Year (With a Bang!)",
     "files": [
       "public/**/*",
       "main.js"
@@ -46,8 +46,8 @@
     }
   },
   "private": true,
-  "description": "Zeanne helps out in a beach clean-up while her twin brother Zene scuba-dived to help replant corals.",
-  "version": "2.2.1.0",
+  "description": "Zene, Zeanne, and their friends had an out-of-this-world New Year's Eve Party! But when the rocket failed to launch after the countdown, Zene and Zeanne remind Dani that failures are a good thing after all, as long as one does not give up.",
+  "version": "2.1.1.0",
   "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
